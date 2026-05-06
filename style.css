@@ -1,0 +1,229 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+
+header {
+    background-color: white;
+    padding: 10px;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+}
+
+main {
+    background-image: url("img/d83htw0-ec490c3b-f7dd-4570-a698-8404a8a12f99.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+}
+
+.img_pokemon {
+    display: inline;
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.container {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    justify-content: space-around;
+}
+
+.container div {
+    padding: 2px;
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    /* Raio de 20px em todos os cantos */
+}
+
+/*Seção das cores de cada div*/
+.normal {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, white, gray);
+}
+
+.fogo {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, khaki, orangered);
+}
+
+.agua {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, rgb(122, 176, 228), rgb(5, 91, 172));
+}
+
+.grama {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, limegreen, seagreen);
+}
+
+.eletrico {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, khaki, orange);
+}
+
+.gelo {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, aliceblue, lightskyblue);
+}
+
+.lutador {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, tomato, darkred);
+}
+
+.veneno {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, plum, purple);
+}
+
+.terra {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, chocolate, sienna);
+}
+
+.voador {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, paleturquoise, steelblue);
+}
+
+.psiquico {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, lightsalmon, palevioletred);
+}
+
+.inseto {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, lawngreen, olivedrab);
+}
+
+.pedra {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, lemonchiffon, brown);
+}
+
+.fada {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, lightpink, fuchsia);
+}
+
+.fantasma {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, orchid, indigo);
+}
+
+.dragao {
+
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, royalblue, darkblue);
+}
+
+/*Seção de cores misturando tipos*/
+.grama-veneno {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: linear-gradient(to right, limegreen, purple);
+}
+
+.fogo-voador {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: linear-gradient(to right, orangered, paleturquoise);
+}
+
+.inseto-voador {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: linear-gradient(to right, olivedrab, paleturquoise);
+}
+
+.inseto-voador {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: linear-gradient(to right, olivedrab, paleturquoise);
+}
+
+.inseto-veneno {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: linear-gradient(to right, olivedrab, purple);
+}
+
+.normal-voador {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: linear-gradient(to right, gray, paleturquoise);
+}
+
+.veneno-terra {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: linear-gradient(to right, purple, chocolate);
+}
+
+.fada-normal {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: linear-gradient(to right, gray, lightpink);
+}
+
+.veneno-voador {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: linear-gradient(to right, purple, paleturquoise);
+}
+
+.inseto-grama {
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    background: linear-gradient(to right, olivedrab, limegreen);
+}
