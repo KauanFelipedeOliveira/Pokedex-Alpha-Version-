@@ -1,2 +1,1 @@
-# Pokedex-Alpha-Version-
-### Sei la
+# Pokedex-slw

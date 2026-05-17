@@ -1,7 +1,6 @@
 * {
     margin: 0px;
     padding: 0px;
-    text-align: center;
 }
 
 header {
@@ -10,14 +9,16 @@ header {
     color: black;
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
 
 main {
-    background-image: url("img/d83htw0-ec490c3b-f7dd-4570-a698-8404a8a12f99.png");
+    background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2fb2821a-1406-4a1d-9b04-6668f278e944/d83htw0-ec490c3b-f7dd-4570-a698-8404a8a12f99.png/v1/fit/w_512,h_288,q_70,strp/pokemon_x_and_y_battle_background_1_by_phoenixoflight92_d83htw0-375w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9Mjg4IiwicGF0aCI6Ii9mLzJmYjI4MjFhLTE0MDYtNGExZC05YjA0LTY2NjhmMjc4ZTk0NC9kODNodHcwLWVjNDkwYzNiLWY3ZGQtNDU3MC1hNjk4LTg0MDRhOGExMmY5OS5wbmciLCJ3aWR0aCI6Ijw9NTEyIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.sesaRH4AxJsEGP_Fiz3ELlC6--rQVlR4iAKZF86v1M4");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
     background-attachment: fixed;
+    padding-top: 20px;
 }
 
 .img_pokemon {
@@ -36,194 +37,372 @@ main {
 }
 
 .container div {
+    position: relative;
     padding: 2px;
     font-size: 30px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: center;
-    /* Raio de 20px em todos os cantos */
 }
 
-/*Seção das cores de cada div*/
-.normal {
+.logo {
+    width: 150px;
+    height: 90px;
+}
+
+/* Barra de pesquisa */
+.search-box {
+    background: white;
+    height: 50px;
+    padding: 10px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    margin: 20px auto;
+    width: fit-content;
+}
+
+::-webkit-input-placeholder {
+    font-size: 17px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #aeaeae;
+}
+
+.search-text {
+    background: none;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    font-size: 15px;
+    width: 0;
+    transition: 0.4s;
+}
+
+.search-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.lupe {
+    width: 45px;
+    height: 35px;
+    display: none;
+}
+
+.lupegreen {
+    width: 45px;
+    height: 35px;
+}
+
+.search-box:hover>.search-text {
+    width: 320px;
+    padding-left: 20px;
+}
+
+.search-box:hover>.search-btn {
+    background: limegreen;
+}
+
+.search-box:hover>.search-btn .lupegreen {
+    display: none;
+}
+
+.search-box:hover>.search-btn .lupe {
+    display: block;
+}
+
+/* Botão de favorito */
+.btn-favorito {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 3px solid white;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, transform 0.15s;
+    backdrop-filter: blur(4px);
+}
+
+.btn-favorito:hover {
+    transform: scale(1.15);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-favorito.favoritado {
+    background-color: white;
+    color: gold;
+    border-color: white;
+}
+
+/* Seção de cores pelos tipos */
+.Normal {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: radial-gradient(circle at top, white, gray);
 }
 
-.fogo {
+.Fire {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: radial-gradient(circle at top, khaki, orangered);
 }
 
-.agua {
+.Water {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: radial-gradient(circle at top, rgb(122, 176, 228), rgb(5, 91, 172));
 }
 
-.grama {
+.Grass {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: radial-gradient(circle at top, limegreen, seagreen);
 }
 
-.eletrico {
+.Electric {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: radial-gradient(circle at top, khaki, orange);
 }
 
-.gelo {
+.Ice {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: radial-gradient(circle at top, aliceblue, lightskyblue);
 }
 
-.lutador {
+.Fighting {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: radial-gradient(circle at top, tomato, darkred);
 }
 
-.veneno {
+.Poison {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: radial-gradient(circle at top, plum, purple);
 }
 
-.terra {
+.Ground {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: radial-gradient(circle at top, chocolate, sienna);
 }
 
-.voador {
+.Flying {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: radial-gradient(circle at top, paleturquoise, steelblue);
 }
 
-.psiquico {
+.Psychic {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: radial-gradient(circle at top, lightsalmon, palevioletred);
 }
 
-.inseto {
+.Bug {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: radial-gradient(circle at top, lawngreen, olivedrab);
 }
 
-.pedra {
+.Rock {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: radial-gradient(circle at top, lemonchiffon, brown);
 }
 
-.fada {
+.Fairy {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: radial-gradient(circle at top, lightpink, fuchsia);
 }
 
-.fantasma {
+.Ghost {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: radial-gradient(circle at top, orchid, indigo);
 }
 
-.dragao {
-
+.Dragon {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: radial-gradient(circle at top, royalblue, darkblue);
 }
 
-/*Seção de cores misturando tipos*/
-.grama-veneno {
+.Steel {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
+    background: radial-gradient(circle at top, slategray, teal);
+}
+
+/* Seção de cores havendo dois tipos */
+.Grass-Poison {
+    width: 300px;
+    border-radius: 20px;
     background: linear-gradient(to right, limegreen, purple);
 }
 
-.fogo-voador {
+.Fire-Flying {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: linear-gradient(to right, orangered, paleturquoise);
 }
 
-.inseto-voador {
+.Bug-Flying {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: linear-gradient(to right, olivedrab, paleturquoise);
 }
 
-.inseto-voador {
+.Bug-Poison {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
-    background: linear-gradient(to right, olivedrab, paleturquoise);
-}
-
-.inseto-veneno {
-    width: 300px;
-    border-radius: 20px;
-    text-align: center;
     background: linear-gradient(to right, olivedrab, purple);
 }
 
-.normal-voador {
+.Bug-Grass {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
+    background: linear-gradient(to right, olivedrab, limegreen);
+}
+
+.Normal-Flying {
+    width: 300px;
+    border-radius: 20px;
     background: linear-gradient(to right, gray, paleturquoise);
 }
 
-.veneno-terra {
+.Normal-Fairy {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
-    background: linear-gradient(to right, purple, chocolate);
-}
-
-.fada-normal {
-    width: 300px;
-    border-radius: 20px;
-    text-align: center;
     background: linear-gradient(to right, gray, lightpink);
 }
 
-.veneno-voador {
+.Poison-Flying {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
     background: linear-gradient(to right, purple, paleturquoise);
 }
 
-.inseto-grama {
+.Poison-Ground {
     width: 300px;
     border-radius: 20px;
-    text-align: center;
-    background: linear-gradient(to right, olivedrab, limegreen);
+    background: linear-gradient(to right, purple, chocolate);
+}
+
+.Water-Poison {
+    width: 300px;
+    border-radius: 20px;
+    background: linear-gradient(to right, rgb(5, 91, 172), purple);
+}
+
+.Water-Ice {
+    width: 300px;
+    border-radius: 20px;
+    background: linear-gradient(to right, rgb(5, 91, 172), lightskyblue);
+}
+
+.Water-Fighting {
+    width: 300px;
+    border-radius: 20px;
+    background: linear-gradient(to right, rgb(5, 91, 172), darkred);
+}
+
+.Water-Psychic {
+    width: 300px;
+    border-radius: 20px;
+    background: linear-gradient(to right, rgb(5, 91, 172), palevioletred);
+}
+
+.Water-Flying {
+    width: 300px;
+    border-radius: 20px;
+    background: linear-gradient(to right, rgb(5, 91, 172), paleturquoise);
+}
+
+.Electric-Steel {
+    width: 300px;
+    border-radius: 20px;
+    background: linear-gradient(to right, orange, teal);
+}
+
+.Electric-Flying {
+    width: 300px;
+    border-radius: 20px;
+    background: linear-gradient(to right, orange, paleturquoise);
+}
+
+.Ground-Rock {
+    width: 300px;
+    border-radius: 20px;
+    background: linear-gradient(to right, sienna, brown);
+}
+
+.Rock-Ground {
+    width: 300px;
+    border-radius: 20px;
+    background: linear-gradient(to right, brown, sienna);
+}
+
+.Rock-Water {
+    width: 300px;
+    border-radius: 20px;
+    background: linear-gradient(to right, brown, rgb(5, 91, 172));
+}
+
+.Rock-Flying {
+    width: 300px;
+    border-radius: 20px;
+    background: linear-gradient(to right, brown, paleturquoise);
+}
+
+.Psychic-Fairy {
+    width: 300px;
+    border-radius: 20px;
+    background: linear-gradient(to right, palevioletred, lightpink);
+}
+
+.Grass-Psychic {
+    width: 300px;
+    border-radius: 20px;
+    background: linear-gradient(to right, limegreen, palevioletred);
+}
+
+.Ice-Flying {
+    width: 300px;
+    border-radius: 20px;
+    background: linear-gradient(to right, lightskyblue, paleturquoise);
+}
+
+.Ice-Psychic {
+    width: 300px;
+    border-radius: 20px;
+    background: linear-gradient(to right, lightskyblue, palevioletred);
+}
+
+.Ghost-Poison {
+    width: 300px;
+    border-radius: 20px;
+    background: linear-gradient(to right, indigo, purple);
+}
+
+.Dragon-Flying {
+    width: 300px;
+    border-radius: 20px;
+    background: linear-gradient(to right, darkblue, paleturquoise);
 }

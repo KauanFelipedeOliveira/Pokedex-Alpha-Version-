@@ -81,7 +81,7 @@ const pokemons = [
     { nome: 'Slowbro', categoria: 'Water/Psychic' },
     { nome: 'Magnemite', categoria: 'Electric/Steel' },
     { nome: 'Magneton', categoria: 'Electric/Steel' },
-    { nome: 'Farfetch’d', categoria: 'Normal/Flying' },
+    { nome: "Farfetch'd", categoria: 'Normal/Flying' },
     { nome: 'Doduo', categoria: 'Normal/Flying' },
     { nome: 'Dodrio', categoria: 'Normal/Flying' },
     { nome: 'Seel', categoria: 'Water' },
@@ -152,12 +152,73 @@ const pokemons = [
     { nome: 'Mew', categoria: 'Psychic' }
 ];
 
-const pokemonsJSON = JSON.stringify(pokemons);
+// Favoritos
+let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
 
-localStorage.setItem("pokemons", pokemonsJSON);
+function salvarFavoritos() {
+    localStorage.setItem('favoritos', JSON.stringify(favoritos));
+}
 
-const getPokemons = localStorage.getItem("pokemons");
+function toggleFavorito(numero, btn) {
+    if (favoritos.includes(numero)) {
+        favoritos = favoritos.filter(n => n !== numero);
+        btn.classList.remove('favoritado');
+    } else {
+        favoritos.push(numero);
+        btn.classList.add('favoritado');
+    }
+    salvarFavoritos();
+}
 
-const pokemonsParse = JSON.parse(getPokemons);
+// Gera as imagens de tipo direto da categoria
+// "Grass/Poison" → <img src="img/Grass.webp"> <img src="img/Poison.webp">
+function gerarImgsTipos(categoria) {
+    return categoria.split('/').map(tipo => {
+        return `<img src="img/${tipo}.webp" alt="Tipo ${tipo}">`;
+    }).join('');
+}
 
-console.log(pokemonsParse);
+// Monta os cards
+const container = document.querySelector('.container');
+
+pokemons.forEach((pokemon, index) => {
+    const numero = index + 1;
+    const numStr = String(numero).padStart(3, '0');
+    const classe = pokemon.categoria.replace('/', '-'); // "Grass/Poison" → "Grass-Poison"
+    const jaFavoritado = favoritos.includes(numero);
+
+    const div = document.createElement('div');
+    div.className = classe;
+    div.innerHTML = `
+        <button class="btn-favorito ${jaFavoritado ? 'favoritado' : ''}" title="Favoritar">★</button>
+        <img class="img_pokemon" src="img/${numStr}.png" alt="#${numero} ${pokemon.nome}">
+        <p>#${numero} ${pokemon.nome}</p>
+        ${gerarImgsTipos(pokemon.categoria)}
+    `;
+
+    div.querySelector('.btn-favorito').addEventListener('click', function () {
+        toggleFavorito(numero, this);
+    });
+
+    container.appendChild(div);
+});
+
+const searchInput = document.querySelector('.search-text');
+const searchBtn = document.querySelector('.search-btn');
+
+function filtrarPokemons() {
+    const termo = searchInput.value.toLowerCase().trim();
+    const cards = container.querySelectorAll('div');
+
+    cards.forEach((card, index) => {
+        const pokemon = pokemons[index];
+        const nomeMatch = pokemon.nome.toLowerCase().includes(termo);
+        const tipoMatch = pokemon.categoria.toLowerCase().includes(termo);
+
+        card.style.display = (nomeMatch || tipoMatch) ? '' : 'none';
+    });
+}
+
+searchInput.addEventListener('input', filtrarPokemons);
+searchBtn.addEventListener('click', filtrarPokemons);
+
