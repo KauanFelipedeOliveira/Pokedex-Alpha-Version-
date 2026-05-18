@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Missingmon</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="popup.css">
 </head>
 
 <body>
@@ -13,31 +14,56 @@
         <a href="index.html">
             <img class="logo" src="img/Logo.png" alt="Logo">
         </a>
-        <a href="favoritos.html">
-            <p>Favoritos</p>
-        </a>
-        <a href="usuario.html">
-            <p>Perfil</p>
-        </a>
+
+        <div class="rightheader">
+            <div class="iconheader">
+                <a href="favoritos.html">
+                    <img class="iconsheader" src="img/Favorite.png" alt="Favorito">
+                    <img class="iconwritedf" src="img/Favoritewrited.png" alt="Favorito escrita">
+                </a>
+            </div>
+            <div class="iconheader">
+                <a href="usuario.html">
+                    <img class="iconsheader" src="img/Login.png" alt="Login">
+                    <img class="iconwritedl" src="img/loginwrited.png" alt="Login escrito">
+                </a>
+            </div>
+        </div>
     </header>
+
     <main>
-
         <div class="search-box">
-            <input type="text" class="search-text" placeholder="Pesquisar...">
-
-            <a class="search-btn">
+            <input type="text" class="search-text" placeholder="Pesquisar..." id="searchInput">
+            <a class="search-btn" id="searchBtn">
                 <img class="lupe" src="img/Lupa.png" alt="lupa">
                 <img class="lupegreen" src="img/Lupaverde.png" alt="lupa verde">
             </a>
         </div>
 
-        <div class="container"></div>
-
-        <script src="script.js"></script>
+        <div class="container" id="pokedex-container"></div>
     </main>
+    
     <footer>
         <p>Sobre nós</p>
     </footer>
+
+    <!-- Popup -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-card" id="popupCard">
+            <img src="" alt="" class="popup-img" id="popupImg">
+            <button class="popup-fav" id="popupFav" aria-label="Favoritar">&#9733;</button>
+            <button class="popup-close" id="popupClose" aria-label="Fechar">&#10005;</button>
+            <div class="popup-tabs">
+                <button class="popup-tab active" id="tabBase">BASE</button>
+                <div class="popup-tab-divider"></div>
+                <button class="popup-tab" id="tab3D">ART</button>
+            </div>
+            <div class="popup-stats" id="popupStats"></div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

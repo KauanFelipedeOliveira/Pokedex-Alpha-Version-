@@ -1,11 +1,180 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Favoritos - Missingmon</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="popup.css">
 </head>
+
 <body>
-    
+    <header>
+        <a href="index.html">
+            <img class="logo" src="img/Logo.png" alt="Logo">
+        </a>
+        <div class="rightheader">
+            <div class="iconheader">
+                <a href="favoritos.html">
+                    <img class="iconsheader" src="img/Favorite.png" alt="Favorito">
+                    <img class="iconwritedf" src="img/Favoritewrited.png" alt="Favorito escrita">
+                </a>
+            </div>
+            <div class="iconheader">
+                <a href="usuario.html">
+                    <img class="iconsheader" src="img/Login.png" alt="Login">
+                    <img class="iconwritedl" src="img/loginwrited.png" alt="Login escrito">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h2 class="fav-titulo">Meus Favoritos</h2>
+        <div class="container" id="fav-container"></div>
+        <p class="fav-vazio" id="fav-vazio" style="display:none;">
+            Você ainda não favoritou nenhum pokémon.<br>
+            <a href="index.html">Voltar para a Pokédex</a>
+        </p>
+    </main>
+
+    <footer>
+        <p>Sobre nós</p>
+    </footer>
+
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-card" id="popupCard">
+            <img src="" alt="" class="popup-img" id="popupImg">
+            <button class="popup-fav" id="popupFav" aria-label="Favoritar">&#9733;</button>
+            <button class="popup-close" id="popupClose" aria-label="Fechar">&#10005;</button>
+            <div class="popup-tabs">
+                <button class="popup-tab active" id="tabBase">BASE</button>
+                <div class="popup-tab-divider"></div>
+                <button class="popup-tab" id="tab3D">ART</button>
+            </div>
+            <div class="popup-stats" id="popupStats"></div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+    <script>
+        const API_BASE = "https://pokeapi.co/api/v2/pokemon";
+
+        const TIPO_ICONE = {
+            grass:"img/Grass.webp", poison:"img/Poison.webp", fire:"img/Fire.webp",
+            flying:"img/Flying.webp", water:"img/Water.webp", bug:"img/Bug.webp",
+            normal:"img/Normal.webp", electric:"img/Electric.webp", ground:"img/Ground.webp",
+            fairy:"img/Fairy.webp", fighting:"img/Fighting.webp", psychic:"img/Psychic.webp",
+            rock:"img/Rock.webp", ghost:"img/Ghost.webp", ice:"img/Ice.webp",
+            dragon:"img/Dragon.webp", dark:"img/Dark.webp", steel:"img/Steel.webp",
+        };
+
+        const TIPO_CLASSE = {
+            grass:"Grass", poison:"Poison", fire:"Fire", flying:"Flying",
+            water:"Water", bug:"Bug", normal:"Normal", electric:"Electric",
+            ground:"Ground", fairy:"Fairy", fighting:"Fighting", psychic:"Psychic",
+            rock:"Rock", ghost:"Ghost", ice:"Ice", dragon:"Dragon",
+            dark:"Dark", steel:"Steel",
+        };
+
+        function getFavoritos() {
+            return JSON.parse(localStorage.getItem('favoritos')) || [];
+        }
+
+        function removerFavorito(id, cardEl) {
+            let favs = getFavoritos();
+            favs = favs.filter(n => n !== id);
+            localStorage.setItem('favoritos', JSON.stringify(favs));
+
+            cardEl.style.transition = "opacity 0.3s, transform 0.3s";
+            cardEl.style.opacity = "0";
+            cardEl.style.transform = "scale(0.85)";
+            setTimeout(() => {
+                cardEl.remove();
+                verificarVazio();
+            }, 300);
+        }
+
+        function verificarVazio() {
+            const container = document.getElementById("fav-container");
+            const vazio = document.getElementById("fav-vazio");
+            if (container.children.length === 0) {
+                vazio.style.display = "block";
+            }
+        }
+
+        function criarCard(pokemon) {
+            const tipos  = pokemon.types.map(t => t.type.name);
+            const numero = String(pokemon.id).padStart(3, "0");
+            const nome   = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+            const sprite = pokemon.sprites.front_default;
+            const classe = tipos.map(t => TIPO_CLASSE[t] || t).join("-");
+
+            const div = document.createElement("div");
+            div.className = classe;
+            div.dataset.nome = nome.toLowerCase();
+
+            const btnFav = document.createElement("button");
+            btnFav.classList.add("btn-favorito", "favoritado");
+            btnFav.innerHTML = "★";
+            btnFav.title = "Remover dos favoritos";
+            btnFav.addEventListener("click", (e) => {
+                e.stopPropagation();
+                removerFavorito(pokemon.id, div);
+            });
+
+            const img = document.createElement("img");
+            img.classList.add("img_pokemon");
+            img.src = sprite;
+            img.alt = nome;
+
+            const p = document.createElement("p");
+            p.textContent = `#${numero} ${nome}`;
+
+            const tiposDiv = document.createElement("div");
+            tiposDiv.classList.add("card-types");
+            tipos.forEach(tipo => {
+                const icone = document.createElement("img");
+                icone.src = TIPO_ICONE[tipo] || "";
+                icone.alt = tipo;
+                tiposDiv.appendChild(icone);
+            });
+
+            div.appendChild(btnFav);
+            div.appendChild(img);
+            div.appendChild(p);
+            div.appendChild(tiposDiv);
+
+            div.addEventListener("click", () => window.abrirPopup(pokemon));
+
+            return div;
+        }
+
+        async function carregarFavoritos() {
+            const container = document.getElementById("fav-container");
+            const vazio = document.getElementById("fav-vazio");
+            const ids = getFavoritos();
+
+            if (ids.length === 0) {
+                vazio.style.display = "block";
+                return;
+            }
+
+            const resultados = await Promise.allSettled(
+                ids.map(id => fetch(`${API_BASE}/${id}`).then(r => r.json()))
+            );
+
+            resultados.forEach(r => {
+                if (r.status === "fulfilled") {
+                    container.appendChild(criarCard(r.value));
+                }
+            });
+
+            verificarVazio();
+        }
+
+        carregarFavoritos();
+    </script>
 </body>
 </html>

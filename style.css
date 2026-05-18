@@ -1,15 +1,20 @@
 * {
     margin: 0px;
     padding: 0px;
+    box-sizing: border-box;
 }
 
 header {
     background-color: white;
-    padding: 10px;
+    padding: 10px 20px;
     color: black;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 main {
@@ -19,46 +24,58 @@ main {
     background-position: center top;
     background-attachment: fixed;
     padding-top: 20px;
+    min-height: calc(100vh - 130px);
 }
 
-.img_pokemon {
-    display: inline;
-    position: relative;
-    width: 120px;
-    height: 120px;
-}
-
-.container {
-    padding: 10px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    justify-content: space-around;
-}
-
-.container div {
-    position: relative;
-    padding: 2px;
-    font-size: 30px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    text-align: center;
-}
-
+/* ── Logo ── */
 .logo {
-    width: 150px;
-    height: 90px;
+    width: 300px;
+    height: 110px;
+    object-fit: contain;
 }
 
-/* Barra de pesquisa */
-.search-box {
-    background: white;
-    height: 50px;
-    padding: 10px;
-    border-radius: 40px;
+/* ── Header direito ── */
+.rightheader {
     display: flex;
     align-items: center;
-    margin: 20px auto;
+    gap: 20px;
+}
+
+.iconheader a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+}
+
+.iconsheader {
+    width: 110px;
+    height: 90px;
+    object-fit: contain;
+}
+
+.iconwritedf {
+    width: 70px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.iconwritedl {
+    width: 60px;
+    height: 30px;
+    object-fit: contain;
+}
+
+/* ── Barra de pesquisa ── */
+.search-box {
+    background: white;
+    height: 60px;
+    padding: 10px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
     width: fit-content;
+    margin: 20px auto;
 }
 
 ::-webkit-input-placeholder {
@@ -85,6 +102,7 @@ main {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .lupe {
@@ -99,7 +117,7 @@ main {
 }
 
 .search-box:hover>.search-text {
-    width: 320px;
+    width: 220px;
     padding-left: 20px;
 }
 
@@ -115,19 +133,72 @@ main {
     display: block;
 }
 
-/* Botão de favorito */
+/* ── Container de cards ── */
+.container {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* ── Cards ── */
+.container>div {
+    position: relative;
+    padding: 12px 8px 10px;
+    border-radius: 20px;
+    font-size: 18px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.container>div:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.img_pokemon {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    display: block;
+}
+
+/* Ícones de tipo no card */
+.card-types {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 2px;
+}
+
+.card-types img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+/* ── Botão favorito ── */
 .btn-favorito {
     position: absolute;
     top: 10px;
     right: 10px;
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    border: 3px solid white;
+    border: 2px solid white;
     background-color: rgba(255, 255, 255, 0.3);
     color: white;
-    font-size: 22px;
-    line-height: 1;
+    font-size: 18px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -147,262 +218,367 @@ main {
     border-color: white;
 }
 
-/* Seção de cores pelos tipos */
-.Normal {
-    width: 300px;
+.fav-titulo {
+    text-align: center;
+    color: white;
+    font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+    font-size: 28px;
+    padding: 24px 0 8px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.fav-vazio {
+    text-align: center;
+    color: white;
+    font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    margin-top: 60px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    line-height: 2;
+}
+
+.fav-vazio a {
+    color: limegreen;
+    text-decoration: underline;
+}
+
+/* ── Footer ── */
+footer {
+    background: white;
+    text-align: center;
+    padding: 16px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    color: #555;
+}
+
+.usuario-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 130px);
+    gap: 20px;
+}
+
+.usuario-card {
+    background: white;
+    border-radius: 24px;
+    padding: 36px 40px 32px;
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
+}
+
+.usuario-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #e8e0f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+
+.usuario-tabs {
+    display: flex;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #7c5cbf;
+    margin-bottom: 4px;
+}
+
+.usuario-tab {
+    flex: 1;
+    padding: 7px 0;
+    border: none;
+    background: transparent;
+    font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #7c5cbf;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.usuario-tab.active {
+    background: #7c5cbf;
+    color: white;
+}
+
+.usuario-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.usuario-form label {
+    font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 2px;
+    display: block;
+}
+
+.usuario-form input[type="text"],
+.usuario-form input[type="email"],
+.usuario-form input[type="password"] {
+    width: 100%;
+    height: 32px;
+    border: none;
     border-radius: 20px;
+    background: #e0e0e0;
+    padding: 0 14px;
+    font-size: 13px;
+    font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+    outline: none;
+    transition: background 0.2s;
+}
+
+.usuario-form input:focus {
+    background: #d0c8f0;
+}
+
+.genero-group label {
+    font-size: 13px;
+    color: #333;
+    font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+}
+
+.genero-opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-left: 4px;
+}
+
+.genero-opcoes label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #555;
+    cursor: pointer;
+}
+
+.genero-opcoes input[type="radio"] {
+    accent-color: #7c5cbf;
+    width: 14px;
+    height: 14px;
+}
+
+.usuario-btn {
+    margin-top: 4px;
+    align-self: center;
+    background: white;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    padding: 7px 36px;
+    font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.usuario-btn:hover {
+    background: #7c5cbf;
+    border-color: #7c5cbf;
+    color: white;
+}
+
+#form-login {
+    display: none;
+}
+
+#form-cadastro {
+    display: flex;
+}
+
+/* ══════════════════════════════════════
+   CORES POR TIPO (1 tipo)
+══════════════════════════════════════ */
+.Normal {
     background: radial-gradient(circle at top, white, gray);
 }
 
 .Fire {
-    width: 300px;
-    border-radius: 20px;
     background: radial-gradient(circle at top, khaki, orangered);
 }
 
 .Water {
-    width: 300px;
-    border-radius: 20px;
     background: radial-gradient(circle at top, rgb(122, 176, 228), rgb(5, 91, 172));
 }
 
 .Grass {
-    width: 300px;
-    border-radius: 20px;
     background: radial-gradient(circle at top, limegreen, seagreen);
 }
 
 .Electric {
-    width: 300px;
-    border-radius: 20px;
     background: radial-gradient(circle at top, khaki, orange);
 }
 
 .Ice {
-    width: 300px;
-    border-radius: 20px;
     background: radial-gradient(circle at top, aliceblue, lightskyblue);
 }
 
 .Fighting {
-    width: 300px;
-    border-radius: 20px;
     background: radial-gradient(circle at top, tomato, darkred);
 }
 
 .Poison {
-    width: 300px;
-    border-radius: 20px;
     background: radial-gradient(circle at top, plum, purple);
 }
 
 .Ground {
-    width: 300px;
-    border-radius: 20px;
     background: radial-gradient(circle at top, chocolate, sienna);
 }
 
 .Flying {
-    width: 300px;
-    border-radius: 20px;
     background: radial-gradient(circle at top, paleturquoise, steelblue);
 }
 
 .Psychic {
-    width: 300px;
-    border-radius: 20px;
     background: radial-gradient(circle at top, lightsalmon, palevioletred);
 }
 
 .Bug {
-    width: 300px;
-    border-radius: 20px;
     background: radial-gradient(circle at top, lawngreen, olivedrab);
 }
 
 .Rock {
-    width: 300px;
-    border-radius: 20px;
     background: radial-gradient(circle at top, lemonchiffon, brown);
 }
 
 .Fairy {
-    width: 300px;
-    border-radius: 20px;
     background: radial-gradient(circle at top, lightpink, fuchsia);
 }
 
 .Ghost {
-    width: 300px;
-    border-radius: 20px;
     background: radial-gradient(circle at top, orchid, indigo);
 }
 
 .Dragon {
-    width: 300px;
-    border-radius: 20px;
     background: radial-gradient(circle at top, royalblue, darkblue);
 }
 
-.Steel {
-    width: 300px;
-    border-radius: 20px;
-    background: radial-gradient(circle at top, slategray, teal);
+.Dark {
+    background: radial-gradient(circle at top, slategray, #1a1a2e);
 }
 
-/* Seção de cores havendo dois tipos */
+.Steel {
+    background: radial-gradient(circle at top, lightsteelblue, teal);
+}
+
+/* ══════════════════════════════════════
+   CORES POR TIPO (2 tipos)
+══════════════════════════════════════ */
 .Grass-Poison {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, limegreen, purple);
 }
 
 .Fire-Flying {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, orangered, paleturquoise);
 }
 
 .Bug-Flying {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, olivedrab, paleturquoise);
 }
 
 .Bug-Poison {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, olivedrab, purple);
 }
 
 .Bug-Grass {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, olivedrab, limegreen);
 }
 
 .Normal-Flying {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, gray, paleturquoise);
 }
 
 .Normal-Fairy {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, gray, lightpink);
 }
 
 .Poison-Flying {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, purple, paleturquoise);
 }
 
 .Poison-Ground {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, purple, chocolate);
 }
 
 .Water-Poison {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, rgb(5, 91, 172), purple);
 }
 
 .Water-Ice {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, rgb(5, 91, 172), lightskyblue);
 }
 
 .Water-Fighting {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, rgb(5, 91, 172), darkred);
 }
 
 .Water-Psychic {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, rgb(5, 91, 172), palevioletred);
 }
 
 .Water-Flying {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, rgb(5, 91, 172), paleturquoise);
 }
 
 .Electric-Steel {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, orange, teal);
 }
 
 .Electric-Flying {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, orange, paleturquoise);
 }
 
 .Ground-Rock {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, sienna, brown);
 }
 
 .Rock-Ground {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, brown, sienna);
 }
 
 .Rock-Water {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, brown, rgb(5, 91, 172));
 }
 
 .Rock-Flying {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, brown, paleturquoise);
 }
 
 .Psychic-Fairy {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, palevioletred, lightpink);
 }
 
 .Grass-Psychic {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, limegreen, palevioletred);
 }
 
 .Ice-Flying {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, lightskyblue, paleturquoise);
 }
 
 .Ice-Psychic {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, lightskyblue, palevioletred);
 }
 
 .Ghost-Poison {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, indigo, purple);
 }
 
 .Dragon-Flying {
-    width: 300px;
-    border-radius: 20px;
     background: linear-gradient(to right, darkblue, paleturquoise);
 }
